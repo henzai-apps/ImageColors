@@ -2,20 +2,17 @@ import CoreGraphics
 import Foundation
 
 extension CGContext {
-    public func colors(maxCount: Int = 5) -> [ColorType] {
+    public func colors(maxCount: Int = 5, minimumSaturation: Double = 0.15) -> [ColorType] {
         let imageColors = NSCountedSet(capacity: width * height)
         var offset: Int = 0
         while offset < bytesPerRow * height {
-            let red = data!.load(fromByteOffset: offset, as: UInt8.self)
-            let green = data!.load(fromByteOffset: offset + 1, as: UInt8.self)
-            let blue = data!.load(fromByteOffset: offset + 2, as: UInt8.self)
-            let alpha = data!.load(fromByteOffset: offset + 3, as: UInt8.self)
+            let pixel = data!.load(fromByteOffset: offset, as: Pixel.self)
             
             let color = ColorType(
-                red: Double(red) / 255.0,
-                green: Double(green) / 255.0,
-                blue: Double(blue) / 255.0,
-                alpha: Double(alpha) / 255.0
+                red: Double(pixel.r) / 255.0,
+                green: Double(pixel.g) / 255.0,
+                blue: Double(pixel.b) / 255.0,
+                alpha: Double(pixel.a) / 255.0
             )
             imageColors.add(color)
             offset += 4
@@ -32,7 +29,7 @@ extension CGContext {
         var sortedColors: [CountedColor] = []
         let enumerator = imageColors.objectEnumerator()
         while let object = enumerator.nextObject(), let color = object as? ColorType {
-            let clampedColor = color.clamped(minimumSaturation: 0.15)
+            let clampedColor = color.clamped(minimumSaturation: minimumSaturation)
             let count = imageColors.count(for: color)
             sortedColors.append(CountedColor(color: clampedColor, count: count))
         }
