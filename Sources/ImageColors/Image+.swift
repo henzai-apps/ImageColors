@@ -14,16 +14,16 @@ public typealias ImageType = NSImage
 #endif
 
 extension ImageType {
-    public func colors(maxCount: Int = 5, scale: Double = 1, minimumSaturation: Double = 0.15) -> [ColorType] {
+    public func colors(maxCount: Int = 5, scale: Double = 1, minimumSaturation: Double = 0.15, threshold: Double = 0.25) -> [ColorType] {
         guard let cgImage = self.cgImage else {
             preconditionFailure("Image should has cgImage.")
         }
-        return cgImage.colors(maxCount: maxCount, scale: scale, minimumSaturation: minimumSaturation)
+        return cgImage.colors(maxCount: maxCount, scale: scale, minimumSaturation: minimumSaturation, threshold: threshold)
     }
 }
 
 extension CGImage {
-    public func colors(maxCount: Int = 5, scale: Double = 1, minimumSaturation: Double = 0.15) -> [ColorType] {
+    public func colors(maxCount: Int = 5, scale: Double = 1, minimumSaturation: Double = 0.15, threshold: Double = 0.25) -> [ColorType] {
         let width = Int(Double(width) * scale)
         let height = Int(Double(height) * scale)
         let context = CGContext(
@@ -37,6 +37,6 @@ extension CGImage {
         )!
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
         context.draw(self, in: rect)
-        return context.colors(maxCount: maxCount, minimumSaturation: minimumSaturation)
+        return context.colors(maxCount: maxCount, minimumSaturation: minimumSaturation, threshold: threshold)
     }
 }

@@ -2,7 +2,7 @@ import CoreGraphics
 import Foundation
 
 extension CGContext {
-    public func colors(maxCount: Int = 5, minimumSaturation: Double = 0.15) -> [ColorType] {
+    public func colors(maxCount: Int = 5, minimumSaturation: Double = 0.15, threshold: Double = 0.25) -> [ColorType] {
         let imageColors = NSCountedSet(capacity: width * height)
         var offset: Int = 0
         while offset < bytesPerRow * height {
@@ -40,7 +40,7 @@ extension CGContext {
             let currentColor = countedColor.color
             var isAlreadyAddedSimilarColor: Bool = false
             for otherColor in resultColors {
-                if !currentColor.isDistinct(color: otherColor) {
+                if !currentColor.isDistinct(color: otherColor, threshold: threshold) {
                     isAlreadyAddedSimilarColor = true
                     break
                 }
