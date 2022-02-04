@@ -15,7 +15,10 @@ public typealias ImageType = NSImage
 
 extension ImageType {
     public func colors(maxCount: Int = 5, scale: Double = 1) -> [ColorType] {
-        self.cgImage!.colors(maxCount: maxCount)
+        guard let cgImage = self.cgImage else {
+            preconditionFailure("Image should has cgImage.")
+        }
+        return cgImage.colors(maxCount: maxCount, scale: scale)
     }
 }
 
