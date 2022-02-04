@@ -18,7 +18,7 @@ extension ImageType {
         guard let cgImage = self.cgImage else {
             preconditionFailure("Image should has cgImage.")
         }
-        return cgImage.colors(maxCount: maxCount, scale: scale)
+        return cgImage.colors(maxCount: maxCount, scale: scale, minimumSaturation: minimumSaturation)
     }
 }
 
