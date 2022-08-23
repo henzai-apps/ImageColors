@@ -50,3 +50,34 @@ extension ColorType {
         return false
     }
 }
+
+extension ColorType {
+    var hsbValue: Int {
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
+        let hueInteger = Int(hue * 360)
+        let saturationInteger = Int(saturation * 100)
+        let brightnessInteger = Int(brightness * 100)
+        let valueString = String(
+            format: "%03d%03d%03d",
+            hueInteger,
+            saturationInteger,
+            brightnessInteger
+        )
+        return Int(valueString)!
+    }
+}
+
+extension Sequence where Element == ColorType {
+    public func sortedByHSB() -> [Element] {
+        sorted(by: \.hsbValue)
+    }
+    
+    func sorted<T: Comparable>(by keyPath: KeyPath<Element, T>) -> [Element] {
+        sorted { a, b in
+            a[keyPath: keyPath] < b[keyPath: keyPath]
+        }
+    }
+}

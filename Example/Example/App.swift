@@ -22,8 +22,9 @@ struct ContentView: View {
     let image = UIImage(named: "hot-air-balloon-g1ccd66ed1_640.jpg")!
     
     var body: some View {
-        VStack {
+        ScrollView {
             Image(uiImage: image)
+                .interpolation(.none)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 300, height: 200)
@@ -31,23 +32,29 @@ struct ContentView: View {
             
             Image(systemName: "arrow.down")
             
-            LazyHGrid(rows: [
+            LazyVGrid(columns: [
                 GridItem(.fixed(44)),
                 GridItem(.fixed(44)),
-                GridItem(.fixed(44))
+                GridItem(.fixed(44)),
+                GridItem(.fixed(44)),
+                GridItem(.fixed(44)),
             ]) {
                 ForEach(colors, id: \.self) { color in
-                    Rectangle()
-                        .frame(width: 44, height: 44)
-                        .foregroundColor(Color(color))
+                    Button {
+                        print(color)
+                    } label: {
+                        Rectangle()
+                            .frame(width: 44, height: 44)
+                            .background(.gray)
+                            .foregroundColor(Color(color))
+                    }
                 }
             }
         }.onAppear {
-            self.colors = image.colors(maxCount: 12, scale: 0.1)
+            self.colors = image
+                .colors(maxCount: 16, scale: 1, minimumSaturation: 0, threshold: 0)
+                .sortedByHSB()
         }
     }
 }
-
-
-
 

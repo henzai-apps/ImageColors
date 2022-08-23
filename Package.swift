@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "ImageColors",
-    platforms: [.iOS(.v13), .macOS(.v11)],
+    platforms: [.iOS(.v15), .macOS(.v11)],
     products: [
         .library(
             name: "ImageColors",

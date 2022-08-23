@@ -33,8 +33,10 @@ extension CGImage {
             bitsPerComponent: 8,
             bytesPerRow: width * 4,
             space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGImageByteOrderInfo.order32Big.rawValue | CGImagePixelFormatInfo.packed.rawValue
         )!
+        context.interpolationQuality = .none
+        context.setAllowsAntialiasing(false)
         let rect = CGRect(x: 0, y: 0, width: width, height: height)
         context.draw(self, in: rect)
         return context.colors(maxCount: maxCount, minimumSaturation: minimumSaturation, threshold: threshold)

@@ -4,9 +4,11 @@ import Foundation
 extension CGContext {
     public func colors(maxCount: Int = 5, minimumSaturation: Double = 0.15, threshold: Double = 0.25) -> [ColorType] {
         let imageColors = NSCountedSet(capacity: width * height)
-        var offset: Int = 0
-        while offset < bytesPerRow * height {
-            let pixel = data!.load(fromByteOffset: offset, as: Pixel.self)
+        for index in 0..<(width * height) {
+            let pixel = data!.load(
+                fromByteOffset: index * MemoryLayout<Pixel>.size,
+                as: Pixel.self
+            )
             
             let color = ColorType(
                 red: Double(pixel.r) / 255.0,
@@ -15,7 +17,6 @@ extension CGContext {
                 alpha: Double(pixel.a) / 255.0
             )
             imageColors.add(color)
-            offset += 4
         }
         class CountedColor {
             internal init(color: ColorType, count: Int) {
@@ -29,7 +30,7 @@ extension CGContext {
         var sortedColors: [CountedColor] = []
         let enumerator = imageColors.objectEnumerator()
         while let object = enumerator.nextObject(), let color = object as? ColorType {
-            let clampedColor = color.clamped(minimumSaturation: minimumSaturation)
+            let clampedColor = color//.clamped(minimumSaturation: minimumSaturation)
             let count = imageColors.count(for: color)
             sortedColors.append(CountedColor(color: clampedColor, count: count))
         }
@@ -40,7 +41,8 @@ extension CGContext {
             let currentColor = countedColor.color
             var isAlreadyAddedSimilarColor: Bool = false
             for otherColor in resultColors {
-                if !currentColor.isDistinct(color: otherColor, threshold: threshold) {
+                if currentColor == otherColor {
+                //if !currentColor.isDistinct(color: otherColor, threshold: threshold) {
                     isAlreadyAddedSimilarColor = true
                     break
                 }
@@ -49,12 +51,7 @@ extension CGContext {
             guard resultColors.count < maxCount else { break }
             resultColors.append(currentColor)
         }
-        
-        var finalColors = resultColors
-        while finalColors.count < maxCount {
-            finalColors.append(.white)
-        }
-        return finalColors
+        return resultColors
     }
 }
 

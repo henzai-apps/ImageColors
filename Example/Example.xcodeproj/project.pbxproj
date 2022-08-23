@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3772A03028B54A9B00A3C0E0 /* Wikipe-tan_pixel_art.png in Resources */ = {isa = PBXBuildFile; fileRef = 3772A02F28B54A9B00A3C0E0 /* Wikipe-tan_pixel_art.png */; };
 		D702253F27106F7B004D3D5A /* ImageColors in Frameworks */ = {isa = PBXBuildFile; productRef = D702253E27106F7B004D3D5A /* ImageColors */; };
 		D732B1FE2710521400D805B1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D732B1FD2710521400D805B1 /* App.swift */; };
 		D732B2022710521600D805B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D732B2012710521600D805B1 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3772A02F28B54A9B00A3C0E0 /* Wikipe-tan_pixel_art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wikipe-tan_pixel_art.png"; sourceTree = "<group>"; };
 		D702253D27106F71004D3D5A /* ImageColors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ImageColors; path = ..; sourceTree = "<group>"; };
 		D732B1FA2710521400D805B1 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D732B1FD2710521400D805B1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 		D732B1FC2710521400D805B1 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				3772A02F28B54A9B00A3C0E0 /* Wikipe-tan_pixel_art.png */,
 				D732B2112710608400D805B1 /* hot-air-balloon-g1ccd66ed1_640.jpg */,
 				D732B1FD2710521400D805B1 /* App.swift */,
 				D732B2012710521600D805B1 /* Assets.xcassets */,
@@ -129,6 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3772A03028B54A9B00A3C0E0 /* Wikipe-tan_pixel_art.png in Resources */,
 				D732B2022710521600D805B1 /* Assets.xcassets in Resources */,
 				D732B2122710608500D805B1 /* hot-air-balloon-g1ccd66ed1_640.jpg in Resources */,
 			);
@@ -279,7 +283,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,7 +312,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
